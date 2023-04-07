@@ -106,7 +106,9 @@ main(int argc, const char** args) {
         stream << "\n};\n";
         stream << "#endif" << "\n";
     
-        std::ofstream output(std::filesystem::path(file).parent_path( ).append(item_name + ".h"));
+        std::filesystem::path outputDirector = out.empty() ? std::filesystem::path(file).parent_path( ) : out;
+        
+        std::ofstream output(std::filesystem::path(outputDirector).append(item_name + ".h"));
         if(!output.is_open( )) {
             std::cout << "Unable to write file to directory" << std::endl;
             return EXIT_FAILURE;
